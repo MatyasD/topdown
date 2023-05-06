@@ -1,0 +1,42 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+body{
+    overflow: hidden;
+    background-color: black;
+}
+
+.webgl{
+    position: absolute;
+    right: 0;
+}
+
+.menu{
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+    margin: 0 auto;
+
+}
+
+.menu a button{
+    position: absolute;
+    width: 200px;
+    height: 100px;
+    top: 300px;
+    border: none;
+    left: -100px;
+}
+
+.menu a:nth-child(2) button{
+    top: 500px;
+
+}
+
+.menu a button:hover{
+    background-color: aliceblue;
+}
