@@ -1,0 +1,94 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    font-family: 'Roboto', sans-serif;
+}
+
+html {
+    width: 3508px;
+}
+
+body {
+    background-image: url("../assets/others/background.png");
+    overflow: hidden;
+    height: 2480px;
+    width: 3508px;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+
+
+#player {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    transform: translate(-50%, -50%);
+    user-select: none;
+    z-index: 999;
+}
+
+#player img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 150px;
+    height: 150px;
+}
+
+#player .bullet-point {
+    position: relative;
+    left: 98px;
+    top: 0;
+    display: inline-block;
+    z-index: 2;
+}
+
+
+#ammoInfo {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+}
+
+#hpInfo {
+    position: fixed;
+    left: 10px;
+    top: 10px;
+}
+
+
+.bullet {
+
+    width: 15px;
+    user-select: none;
+}
+
+.box {
+    width: 100px;
+}
+
+.enemy{
+    width: 200px;
+}
+
+.enemyHealthBar{
+    width: 100px;
+    height: 10px;
+    background-color: black;
+
+}
+
+.enemyHealth{
+    width: 100px;
+    height: 10px;
+    background-color: red;
+}
