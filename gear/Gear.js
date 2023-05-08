@@ -16,10 +16,10 @@ class Gear{
                 }
             }
         }else{
-            console.log("gearPos")
 
+            console.log("gearPos")
             let gearPos = JSON.parse(localStorage.getItem("gearPos"));
-            console.log(gearPos)
+
             for (let i = 0; i < Object.keys(gearPos).length ; i++) {
                 if (gearPos[i] !== null){
                     console.log(gearPos)
