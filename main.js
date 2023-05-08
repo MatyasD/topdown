@@ -7,17 +7,30 @@ const scene = new THREE.Scene();
 
 // sizes
 const sizes = {
-  width: window.innerWidth,
+  width: window.innerWidth / 2.1,
   height: window.innerHeight
 }
 
 // obj loader
 
 const gltfLoader = new GLTFLoader();
+let mixer;
+const clock = new THREE.Clock();
+gltfLoader.load('models/Final.gltf', (gltf) => {
 
-gltfLoader.load('assets/Final.gltf', (gltf) => {
-  gltf.scene.scale.set(3, 3, 3)
-  gltf.scene.position.y = -3
+  gltf.scene.scale.set(4, 4, 4);
+  gltf.scene.position.y = -3;
+
+  // Access the animation data
+  const animations = gltf.animations;
+
+  // Create an AnimationMixer and add the AnimationClips
+  mixer = new THREE.AnimationMixer(gltf.scene);
+  animations.forEach((clip) => {
+    mixer.clipAction(clip).play();
+  });
+
+  // Add the GLTF object to the scene
   scene.add(gltf.scene);
 });
 
@@ -49,8 +62,6 @@ const controls = new OrbitControls(camera, renderer.domElement)
 controls.enableDamping = true;
 controls.enablePan = false;
 controls.enableZoom = false;
-controls.autoRotate = true;
-controls.autoRotateSpeed = 5
 controls.minPolarAngle = Math.PI / 2;
 controls.maxPolarAngle = Math.PI / 2;
 
@@ -66,10 +77,17 @@ window.addEventListener("resize", () => {
 })
 
 
+
 const loop = () => {
   controls.update();
+  if (mixer) {
+    mixer.update(clock.getDelta()); // clock is a Three.js Clock object
+  }
+
   renderer.render(scene, camera)
   window.requestAnimationFrame(loop)
+
+
 }
 
 loop()
