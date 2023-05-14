@@ -1,6 +1,6 @@
 
 
-let gear = [new Torso("gear/assets/torso/basic.png", 40),new Gloves("gear/assets/gloves/legendary.png", 20) ]
+let gear = [new Gear("gear/assets/torso/basic.png", 40, 0, "torso"),new Gear("gear/assets/gloves/legendary.png", 20, 0, "gloves") ]
 let itemCard = document.getElementsByClassName("item");
 
 let currDragged;
