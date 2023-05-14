@@ -89,8 +89,10 @@ class Player {
         if (gearPos !== null){
             for (let i = 0; i < 6 ; i++) {
                 if (gearPos[i] !== null){
+
                     this.hp += gearPos[i].hp;
                     this.speed += gearPos[i].speed;
+                    this.totalHp += gearPos[i].hp;
                 }
             }
         }
