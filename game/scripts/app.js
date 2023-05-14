@@ -10,7 +10,7 @@ const bodyElCenter = {
 
 let healthBox = new HealthBox();
 
-let game = new Game(new Player(bodyElCenter.x, bodyElCenter.y, 100, new Gun(30, 0, 100, 100, 10, 3), 10), 0)
+let game = new Game(new Player(bodyElCenter.x, bodyElCenter.y, 100, new Gun(30, 7, 100, 100, 10, 3), 10), 0)
 
 // Funkce volána jednou, hned po načtení stránky
 
@@ -19,8 +19,6 @@ game.start();
 
 // Funkce volána každý frame
 function update() {
-
-
     game.update();
 
 

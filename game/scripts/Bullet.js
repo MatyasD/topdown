@@ -57,6 +57,7 @@ class Bullet {
         target.hp -= game.player.gun.damage;
 
         if (target.hp <= 0){
+            game.points += target.points;
             target.el.remove();
         }else{
             target.takeDamage();

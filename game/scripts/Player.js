@@ -12,21 +12,29 @@ class Player {
             toTop: 0,
             toBottom: 0,
         }
+        this.totalHp = hp;
         this.el = document.querySelector("#player");
-        this.setStats()
+        this.setGear()
+        this.healthEl = document.createElement("div");
+        this.healthBar = document.createElement("div");
+        this.createHealthBar()
     }
 
     // Metoda volající všechny metody, které se opakují každý frame
     play() {
-        this.showHp();
         this.move();
         this.bullets.forEach(item => item.moveToDirection());
         this.bullets.forEach(item => item.checkCollisions());
 
     }
 
-    showHp() {
-        let hpInfoEl = document.getElementById("hpInfoText").innerHTML = `${this.hp}`;
+    createHealthBar(){
+        this.healthBar.setAttribute("class", "playerHealthBar");
+
+        document.body.appendChild(this.healthBar)
+
+        this.healthEl.setAttribute("class", "playerHealth");
+        this.healthBar.appendChild(this.healthEl);
     }
 
     move() {
@@ -36,8 +44,8 @@ class Player {
         if (keyPresses.a && this.distances.toLeft - 110 >= 0) this.x -= this.speed;
         if (keyPresses.d && this.distances.toRight - 150 >= 0) this.x += this.speed;
 
-        playerDiv.style.left = `${this.x}px`;
-        playerDiv.style.top = `${this.y}px`;
+        this.el.style.left = `${this.x}px`;
+        this.el.style.top = `${this.y}px`;
     }
 
     checkScrolling() {
@@ -68,15 +76,25 @@ class Player {
 
     takeDamage(damage){
         this.hp -= damage;
+        this.healthEl.style.width = `${this.hp / (this.totalHp / 100)}%`
         if (this.hp <= 0){
 
             this.el.remove();
         }
     }
 
-    setStats(){
+    setGear(){
         let gearPos = JSON.parse(localStorage.getItem("gearPos")) ;
         console.log(gearPos)
+        if (gearPos !== null){
+            for (let i = 0; i < 6 ; i++) {
+                if (gearPos[i] !== null){
+                    this.hp += gearPos[i].hp;
+                    this.speed += gearPos[i].speed;
+                }
+            }
+        }
+
     }
 
 }

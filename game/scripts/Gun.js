@@ -23,9 +23,9 @@ class Gun {
             }
 
 
-            // let offset = (Math.random() - 0.5) * Math.PI / this.gun.bullSpread;
+             let spread = (Math.random() - 0.5) * Math.PI / this.bullSpread;
             // přičíst offset pro spread
-            let bullDirection = Math.atan2(mouseY - bulletPointPos.y, mouseX - bulletPointPos.x);
+            let bullDirection = Math.atan2(mouseY - bulletPointPos.y, mouseX - bulletPointPos.x) + spread;
 
 
 

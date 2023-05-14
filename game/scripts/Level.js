@@ -33,7 +33,7 @@ class Level {
 
         for (let i = 0; i < this.numOfEnemeis; i++) {
             //let enemyIndex = Math.floor(Math.random() * enemies.length);
-            this.enemies.push(new Enemy(Engine.randomPosition().x,Engine.randomPosition().y,50,2,3));
+            this.enemies.push(new Enemy(Engine.randomPosition().x,Engine.randomPosition().y,50,2,3, 10));
         }
 
         for (let i = 0; i < this.enemies.length; i++) {

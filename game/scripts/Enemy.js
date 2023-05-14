@@ -1,10 +1,11 @@
 class Enemy {
-    constructor(x, y, hp, damage, speed) {
+    constructor(x, y, hp, damage, speed, points) {
         this.x = x;
         this.y = y;
         this.hp = hp;
         this.damage = damage;
         this.speed = speed;
+        this.points = points;
         this.totalHp = hp;
         this.path = "assets/others/zombie.png";
         this.direction = 0;
@@ -12,6 +13,7 @@ class Enemy {
         this.img = document.createElement("img");
         this.healthEl = document.createElement("div");
         this.healthBar = document.createElement("div");
+        this.isDamageEnabled = true;
     }
 
     spawn(){
@@ -65,8 +67,15 @@ class Enemy {
 
     play(){
         this.moveToPlayer();
-        if (Engine.checkCollision(this.img, game.player.el)){
+        if (Engine.checkCollision(this.img, game.player.el) && this.isDamageEnabled){
+            this.isDamageEnabled = false;
             game.player.takeDamage(this.damage);
+
+
+            setTimeout(() =>{
+                this.isDamageEnabled = true;
+            },1000)
+
         }
     }
 
