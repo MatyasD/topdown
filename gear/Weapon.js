@@ -3,6 +3,7 @@ class Weapon extends Gear{
         super(path);
         this.gun = gun;
         this.name = "weapon"
+
     }
 
 }

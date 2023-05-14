@@ -1,9 +1,13 @@
 class Gear{
-    constructor(path) {
+    constructor(path, hp, speed, name) {
         this.path = path;
         this.el = document.createElement("img");
         this.items = document.getElementsByClassName("item");
         this.currEl = 0;
+        this.hp = hp;
+        this.speed = speed;
+        this.name = name;
+
         this.create()
     }
 
@@ -37,6 +41,8 @@ class Gear{
         this.el.src = this.path;
         this.el.setAttribute("class", "gear")
         this.el.setAttribute("draggable", "true")
+        // this.el.setAttribute("title", "")
+
         this.currEl.appendChild(this.el)
     }
 
