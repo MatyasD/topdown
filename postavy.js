@@ -1,77 +1,86 @@
+const gg = new GearGenerator();
 
-
-let gear = [new Gear("gear/assets/torso/basic.png", 40, 0, "torso"),new Gear("gear/assets/gloves/legendary.png", 20, 0, "gloves") ]
+let gear = [];
 let itemCard = document.getElementsByClassName("item");
-
 let currDragged;
-let gearPos = {}
+let currPos;
 
 window.onload = () =>{
+
     if (localStorage.length === 0){
-        for (let i = 0; i < itemCard.length; i++) {
-            gearPos[i] = null;
-        }
+        gear = [...gg.generateGear(3)]
+        localStorage.setItem("gear", JSON.stringify(gear))
+        localStorage.setItem("isFirstTime", JSON.stringify(true))
     }else{
-        gearPos = JSON.parse(localStorage.getItem("gearPos"));
-        for (let i = 0; i < gearPos.length; i++) {
-            if (gearPos[i] !== null){
-                itemCard[i].appendChild(gearPos[i].el)
+        localStorage.setItem("isFirstTime", JSON.stringify(false))
+        gear = JSON.parse(localStorage.getItem("gear"))
+        for (let i = 0; i < gear.length; i++) {
+            if(gear[i] !== null || undefined){
+                if (gear[i].name !== "weapon"){
+                    gear[i] = Object.assign(new Gear(), gear[i]);
+                }else{
+                    gear[i] = Object.assign(new Magazine(), gear[i]);
+                }
             }
         }
     }
+
+    for (let i = 0; i < gear.length; i++) {
+        if(gear[i] !== null || undefined){
+            gear[i].create(i)
+        }
+    }
+    setEvents();
 }
 
 
+function setEvents(){
 
-for (let i = 0; i < gear.length; i++) {
-    gear[i].el.addEventListener("dragstart", function (e){
-        currDragged = gear[i];
-        setClasses()
-    })
-}
+    for (let i = 0; i < gear.length; i++) {
+        if (gear[i] !== null || undefined){
+            gear[i].el.addEventListener("dragstart", function (e){
+                currDragged = gear[i];
+                currPos = i;
+            })
+        }
+    }
 
-for (let i = 0; i < itemCard.length; i++) {
-    itemCard[i].addEventListener("dragover", function (e){
-        e.preventDefault()
-    })
+    for (let i = 0; i < itemCard.length; i++) {
 
-    itemCard[i].addEventListener("drop", function (e){
-        if (itemCard[i].classList.contains(`${currDragged.name}`) || itemCard[i].classList.contains(`empty`)){
-            itemCard[i].prepend(currDragged.el)
+        if (typeof gear[i] !== "object"){
+            console.log(gear[i]);
+            gear[i] = null;
+        }
 
-            for (let j = 0; j < Object.keys(gearPos).length; j++) {
-                if (gearPos[j] && gearPos[j]["path"] === currDragged["path"]) {
-                    gearPos[j] = null;
-                    break;
+        itemCard[i].addEventListener("dragover", function (e){
+            e.preventDefault()
+        })
+
+        itemCard[i].addEventListener("drop", function (e){
+
+            if (itemCard[i].classList.contains(`empty`)){
+                if (itemCard[i].classList.contains("equipped-gear") && itemCard[i].classList.contains(`${currDragged.name}`)  ){
+                    setDraggedItem(i);
+                }else if (!itemCard[i].classList.contains("equipped-gear")){
+                    setDraggedItem(i);
                 }
             }
 
-            gearPos[i] = currDragged;
-            console.log(gearPos)
-            localStorage.removeItem('gearPos')
-            localStorage.setItem('gearPos', JSON.stringify(gearPos));
-            console.log(gearPos)
-            console.log(localStorage)
-            console.log("---")
-        }
-    })
-
+        })
+    }
 }
 
+function setDraggedItem(index){
 
-
-
-function setClasses(){
-    for (let i = 0; i < itemCard.length; i++) {
-
-
-        if ( itemCard[i].hasChildNodes() ){
-            itemCard[i].classList.remove("empty")
-        }else if (!itemCard[i].classList.contains(`empty`)){
-            itemCard[i].classList.add("empty")
-            gearPos[i] = null;
-            localStorage.removeItem('gearPos')
-            localStorage.setItem('gearPos', JSON.stringify(gearPos));
-        }
+    if ((currDragged !== null || undefined) && !itemCard[index].hasChildNodes() ){
+        currDragged.el.parentElement.classList.add("empty");
+        itemCard[index].prepend(currDragged.el);
+        currDragged.el.parentElement.classList.remove("empty");
+        gear[index] = currDragged;
+        console.log(gear[currPos])
+        gear[currPos] = null;
+        localStorage.setItem("gear", JSON.stringify(gear))
     }
+
+    setEvents()
 }
