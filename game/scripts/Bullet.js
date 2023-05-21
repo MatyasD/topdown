@@ -59,6 +59,7 @@ class Bullet {
         if (target.hp <= 0){
             game.points += target.points;
             target.el.remove();
+            game.isGenerated = false;
         }else{
             target.takeDamage();
         }

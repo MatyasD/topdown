@@ -9,6 +9,10 @@
     <title>Document</title>
     <link rel="stylesheet" href="styles/style.css">
 
+
+    <script src="../gear/Gear.js"></script>
+    <script src="../gear/Magazine.js"></script>
+    <script src="../gear/GearGenerator.js"></script>
     <script src="scripts/Game.js"></script>
     <script src="scripts/Engine.js"></script>
     <script src="scripts/Gun.js"></script>
@@ -22,15 +26,12 @@
 </head>
 
 <body>
+    <div id="game">
+
 
     <div id="player">
-        <div id="playerRotate">
             <img class="player-img" src="assets/char1/char1.png" draggable="false">
             <div class="bullet-point"></div>
-        </div>
-        <div class="playerNoRotate">
-
-        </div>
     </div>
 
     <div id="pointsInfo">
@@ -45,11 +46,13 @@
     <div class="map">
 
     </div>
-
+    </div>
 
     <script src="scripts/characterMovement.js"></script>
     <script src="scripts/Bullet.js"></script>
     <script src="scripts/Player.js"></script>
+    <script src="scripts/Joe.js"></script>
+    <script src="scripts/John.js"></script>
     <script src="scripts/Enemy.js"></script>
     <script src="scripts/levels.js"></script>
     <script src="scripts/app.js"></script>

@@ -65,6 +65,8 @@ class GearGenerator{
                 gear.hp[i] = (gear.generatedRarities[i] + 1) * 10;
                 if (gear.generatedGearNames[i] === "boots"){
                     gear.speed[i] = (gear.generatedRarities[i] + 1) * 2;
+                }else{
+                    gear.speed[i] = 0;
                 }
             }else{
                 // kod pro zbran; dalsi objekt do gear;

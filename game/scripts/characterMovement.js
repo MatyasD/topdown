@@ -1,14 +1,23 @@
 let keyPresses = {};
-let positionX = 0;
-let positionY = 0;
-let deg = 0;
 let playerDiv = document.querySelector("#player")
 let img = document.querySelector(".player-img");
+
+
 
 window.addEventListener("keydown", function (e) {
     keyPresses[e.key] = true;
     if (e.key === "r") {
         game.player.gun.reload();
+    }
+
+    if (e.key === "q") {
+        game.player.firstAbility();
+        console.log("firstAbilityUsed")
+    }
+
+    if (e.key === "e") {
+        game.player.secondAbility();
+        console.log("secondAbilityUsed")
     }
 })
 
@@ -17,18 +26,24 @@ window.addEventListener("keyup", function (e) {
 })
 
 window.addEventListener("click", function (e) {
-    game.player.gun.shoot()
+       // game.player.gun.shoot()
 })
 
 window.addEventListener("mousedown", function (e) {
-    shootInterval = setInterval(function () {
+
         game.player.gun.shoot()
 
-    }, game.player.gun.fireRate)
+
+
+        shootInterval = setInterval(function () {
+            game.player.gun.shoot()
+            console.log("mouseDown shooting")
+        }, game.player.gun.fireRate)
 })
 
 window.addEventListener("mouseup", function (e) {
     clearInterval(shootInterval)
+
 })
 
 var imgCenter = {

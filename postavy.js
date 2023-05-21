@@ -1,3 +1,5 @@
+
+
 const gg = new GearGenerator();
 
 let gear = [];
@@ -8,9 +10,15 @@ let currPos;
 window.onload = () =>{
 
     if (localStorage.length === 0){
-        gear = [...gg.generateGear(3)]
+     //   gear = [...gg.generateGear(3)]
+
+        gear[6] = gg.generateGear(1)[0];
+        gear[7] = gg.generateGear(1)[0];
+        gear[8] = gg.generateGear(1)[0];
+
         localStorage.setItem("gear", JSON.stringify(gear))
         localStorage.setItem("isFirstTime", JSON.stringify(true))
+        localStorage.setItem("char", "joe")
     }else{
         localStorage.setItem("isFirstTime", JSON.stringify(false))
         gear = JSON.parse(localStorage.getItem("gear"))
@@ -25,11 +33,18 @@ window.onload = () =>{
         }
     }
 
-    for (let i = 0; i < gear.length; i++) {
-        if(gear[i] !== null || undefined){
+    let length = gear.length
+    for (let i = 0; i < length; i++) {
+        if(gear[i] !== null && gear[i] !== undefined && gear[i].length !== 0){
             gear[i].create(i)
+
+                if (gear[gear[i].index] === null  ){
+                    gear[gear[i].index] = gear[i]
+                    gear[i] = null
+                }
         }
     }
+    localStorage.setItem("gear", JSON.stringify(gear))
     setEvents();
 }
 
@@ -37,7 +52,7 @@ window.onload = () =>{
 function setEvents(){
 
     for (let i = 0; i < gear.length; i++) {
-        if (gear[i] !== null || undefined){
+        if (gear[i] !== null && gear[i] !== undefined && gear[i].length !== 0){
             gear[i].el.addEventListener("dragstart", function (e){
                 currDragged = gear[i];
                 currPos = i;
@@ -48,7 +63,6 @@ function setEvents(){
     for (let i = 0; i < itemCard.length; i++) {
 
         if (typeof gear[i] !== "object"){
-            console.log(gear[i]);
             gear[i] = null;
         }
 
@@ -72,15 +86,30 @@ function setEvents(){
 
 function setDraggedItem(index){
 
-    if ((currDragged !== null || undefined) && !itemCard[index].hasChildNodes() ){
+    if ((currDragged !== null && currDragged !== undefined) && !itemCard[index].hasChildNodes() ){
         currDragged.el.parentElement.classList.add("empty");
         itemCard[index].prepend(currDragged.el);
         currDragged.el.parentElement.classList.remove("empty");
         gear[index] = currDragged;
-        console.log(gear[currPos])
         gear[currPos] = null;
+
         localStorage.setItem("gear", JSON.stringify(gear))
     }
 
     setEvents()
 }
+
+document.getElementsByClassName("char1")[0].addEventListener("click", function (){
+    if (localStorage.getItem("char") !== "joe"){
+        localStorage.setItem("char", "joe")
+        location.reload();
+    }
+
+})
+
+document.getElementsByClassName("char2")[0].addEventListener("click", function (){
+    if (localStorage.getItem("char") !== "john"){
+        localStorage.setItem("char", "john")
+        location.reload();
+    }
+})

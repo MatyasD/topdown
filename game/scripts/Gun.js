@@ -10,6 +10,7 @@ class Gun {
         this.reloadRunning = false;
     }
 
+    // dodelat fire rate
 
     shoot() {
 
@@ -28,7 +29,6 @@ class Gun {
             let bullDirection = Math.atan2(mouseY - bulletPointPos.y, mouseX - bulletPointPos.x) + spread;
 
 
-
             let bullet = new Bullet(bulletPointPos.x, bulletPointPos.y, bullDirection, 15);
             bullet.createBullet();
 
@@ -38,6 +38,7 @@ class Gun {
     }
 
     showAmmoInfo() {
+
         let ammoInfoEl = document.getElementById("ammoInfoText").innerHTML = `${this.leftInMag} / ${this.totalAmmo}`;
         if (this.leftInMag === 0 && this.totalAmmo !== 0) {
             this.reload();

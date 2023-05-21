@@ -1,11 +1,12 @@
 class Enemy {
-    constructor(x, y, hp, damage, speed, points) {
+    constructor(x, y, hp, damage, speed,points, randomBoost) {
         this.x = x;
         this.y = y;
         this.hp = hp;
         this.damage = damage;
         this.speed = speed;
         this.points = points;
+        this.randomBoost = randomBoost;
         this.totalHp = hp;
         this.path = "assets/others/zombie.png";
         this.direction = 0;
@@ -25,11 +26,8 @@ class Enemy {
         this.img.setAttribute("draggable", "false")
         this.el.style.position = 'absolute';
 
-
         body.appendChild(this.el);
         this.el.appendChild(this.img)
-
-
 
         this.healthBar.setAttribute("class", "enemyHealthBar");
 
@@ -37,8 +35,6 @@ class Enemy {
 
         this.healthEl.setAttribute("class", "enemyHealth");
         this.healthBar.appendChild(this.healthEl);
-
-
 
     }
 
@@ -57,7 +53,6 @@ class Enemy {
         let enemyAngle = Math.atan2(playerY - enemyY, playerX - enemyX) * (180 / Math.PI);
 
         this.img.style.transform = `rotate(${enemyAngle}deg)`;
-
     }
 
     takeDamage(){
@@ -71,13 +66,10 @@ class Enemy {
             this.isDamageEnabled = false;
             game.player.takeDamage(this.damage);
 
-
             setTimeout(() =>{
                 this.isDamageEnabled = true;
             },1000)
 
         }
     }
-
-
 }
