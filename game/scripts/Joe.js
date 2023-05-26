@@ -6,29 +6,35 @@ class Joe extends Player {
     }
 
     firstAbility() {
-        if (!this.isFirstAbilityUsed && keyPresses.q){
-            this.gun.fireRate  = 2;
-            this.isFirstAbilityUsed = true;
+        if (!this.isFirstAbilityUsed){
+            if (keyPresses.q){
+                this.gun.fireRate  = 2;
+                this.isFirstAbilityUsed = true;
+            }
+
+            setTimeout( () =>{
+                this.gun.fireRate = this.defaultFireRate;qs
+            }, 1000)
         }
 
-        setTimeout( () =>{
-                this.gun.fireRate = this.defaultFireRate;qs
-                }, 1000)
 
     }
 
     secondAbility() {
-        if (!this.isSecondAbilityUsed && keyPresses.e){
-            this.defaultHp = this.hp;
-            this.hp = 999999;
-            this.isSecondAbilityUsed = true;
-            this.setHealthBar()
+        if (!this.isSecondAbilityUsed){
+            if (keyPresses.e){
+                this.defaultHp = this.hp;
+                this.hp = 999999;
+                this.isSecondAbilityUsed = true;
+                this.setHealthBar()
+            }
+
+            setTimeout( () =>{
+                this.hp = this.defaultHp;
+                this.setHealthBar()
+            }, 5000)
         }
 
-        setTimeout( () =>{
-            this.hp = this.defaultHp;
-            this.setHealthBar()
-        }, 5000)
-    }
 
+    }
 }

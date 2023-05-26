@@ -1,6 +1,6 @@
 class HealthBox extends Box {
     constructor() {
-        super("./assets/others/boxes/healthBox.jpg")
+        super("./assets/others/boxes/healthBox.png")
         this.hp = 50;
     }
 
@@ -10,5 +10,6 @@ class HealthBox extends Box {
         }else{
             game.player.hp += this.hp;
         }
+        game.player.setHealthBar()
     }
 }

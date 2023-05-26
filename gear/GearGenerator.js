@@ -16,9 +16,7 @@ class GearGenerator{
             }else {
                 this.gear.unshift(new Magazine(`gear/assets/${createdGear.generatedGearNames[i]}/${this.rarities[createdGear.generatedRarities[i]]}.png`, createdGear.gun.magSize[i], createdGear.gun.bullSpread[i], createdGear.gun.fireRate[i], createdGear.gun.totalAmmo[i], createdGear.gun.damage[i], createdGear.gun.reloadTime[i]), this.gearNames[createdGear.generatedGearNames[i]]);
             }
-
         }
-
         this.gear = this.gear.filter(item => typeof item == "object");
         return this.gear;
     }
@@ -83,9 +81,4 @@ class GearGenerator{
         }
         return gear;
     }
-
-
 }
-
-
- // let gear = [new Gear("gear/assets/torso/basic.png", 40, 0, "torso"),new Gear("gear/assets/gloves/legendary.png", 20, 0, "gloves") ]

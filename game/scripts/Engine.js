@@ -6,7 +6,6 @@ class Engine {
 
     static randomPosition(){
 
-
         let x =  Math.floor(Math.random() * document.body.clientWidth);
         let y = Math.floor(Math.random() * document.body.clientHeight);
 
@@ -15,5 +14,4 @@ class Engine {
 
         return {x,y};
     }
-
 }

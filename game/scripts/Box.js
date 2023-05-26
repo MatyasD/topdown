@@ -16,7 +16,6 @@ class Box {
         this.el.style.left = `${Engine.randomPosition().x}px`;
         this.el.style.top = `${Engine.randomPosition().y}px`;
         body.appendChild(this.el);
-
     }
 
     // Kontrola, jestli hráč sebral box
@@ -31,5 +30,4 @@ class Box {
     pickUp() {
         this.pickUp();
     }
-
 }

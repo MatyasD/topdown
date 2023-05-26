@@ -1,6 +1,6 @@
 class AmmoBox extends Box {
     constructor() {
-        super("./assets/others/boxes/ammoBox.jpg")
+        super("./assets/others/boxes/ammoBox.png")
 
     }
 

@@ -10,22 +10,16 @@ class Level {
     }
 
     play(){
-        for (let i = 0; i < this.enemies.length; i++) {
-            this.enemies[i].play();
-        }
 
-        this.enemies = this.enemies.filter(enemy => enemy.hp > 0);
 
         if (this.enemies.length === 0 && !this.isNewLevel){
             game.level++;
 
             if (game.level >= levels.length){
                 game.isRunning = false;
-                console.log("koneeeeeeeeeec")
             }else {
                 levels[game.level].startLevel();
             }
-
         }
     }
 
@@ -33,8 +27,7 @@ class Level {
 
         for (let i = 0; i < this.numOfEnemeis; i++) {
             //let enemyIndex = Math.floor(Math.random() * enemies.length);
-            let randomBoost = Math.floor(Math.random()*5);
-            this.enemies.push(new Enemy(Engine.randomPosition().x,Engine.randomPosition().y,50,2,3, 10, randomBoost));
+            this.enemies.push(new Enemy(Engine.randomPosition().x,Engine.randomPosition().y,50,2,3, 10));
         }
 
         for (let i = 0; i < this.enemies.length; i++) {

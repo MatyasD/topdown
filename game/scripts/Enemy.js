@@ -1,20 +1,21 @@
 class Enemy {
-    constructor(x, y, hp, damage, speed,points, randomBoost) {
+    constructor(path, x, y, hp, damage, speed,points, size) {
+        this.path = path;
         this.x = x;
         this.y = y;
         this.hp = hp;
         this.damage = damage;
         this.speed = speed;
         this.points = points;
-        this.randomBoost = randomBoost;
+        this.size = size;
         this.totalHp = hp;
-        this.path = "assets/others/zombie.png";
         this.direction = 0;
         this.el = document.createElement("div");
         this.img = document.createElement("img");
         this.healthEl = document.createElement("div");
         this.healthBar = document.createElement("div");
         this.isDamageEnabled = true;
+        this.spawn()
     }
 
     spawn(){
@@ -24,7 +25,11 @@ class Enemy {
         this.img.src = this.path;
         this.img.setAttribute("class", "enemy");
         this.img.setAttribute("draggable", "false")
+        this.img.style.width = `${this.size}px`;
+        this.img.style.border = `1px solid red`;
         this.el.style.position = 'absolute';
+        this.el.style.zIndex = "8"
+
 
         body.appendChild(this.el);
         this.el.appendChild(this.img)
@@ -35,7 +40,7 @@ class Enemy {
 
         this.healthEl.setAttribute("class", "enemyHealth");
         this.healthBar.appendChild(this.healthEl);
-
+        this.play()
     }
 
     moveToPlayer(){
@@ -52,13 +57,12 @@ class Enemy {
         let enemyY = this.y + 200 / 2;
         let enemyAngle = Math.atan2(playerY - enemyY, playerX - enemyX) * (180 / Math.PI);
 
-        this.img.style.transform = `rotate(${enemyAngle}deg)`;
+         this.img.style.transform = `rotate(${enemyAngle}deg)`;
     }
 
     takeDamage(){
         this.healthEl.style.width = `${this.hp / (this.totalHp / 100)}px`
     }
-
 
     play(){
         this.moveToPlayer();

@@ -27,7 +27,6 @@ class Bullet {
         this.x += Math.cos(this.direction) * this.speed;
         this.y += Math.sin(this.direction) * this.speed;
 
-
         this.el.style.top = `${this.y - (this.el.offsetHeight / 2)}px`;
         this.el.style.left = `${this.x - (this.el.offsetWidth / 2)}px`;
 
@@ -41,16 +40,14 @@ class Bullet {
 
     }
 
-
     checkCollisions() {
 
-        for (let i = 0; i < levels[game.level].enemies.length ; i++) {
-            if (Engine.checkCollision(this.el, levels[game.level].enemies[i].el)){
+        for (let i = 0; i < game.rg.enemies.length ; i++) {
+            if (Engine.checkCollision(this.el, game.rg.enemies[i].img)){
                 this.el.remove()
-                this.dealDamage(levels[game.level].enemies[i])
+                this.dealDamage(game.rg.enemies[i])
             }
         }
-
     }
 
     dealDamage(target){
@@ -60,13 +57,9 @@ class Bullet {
             game.points += target.points;
             target.el.remove();
             game.isGenerated = false;
+            game.isGearGenerated = false;
         }else{
             target.takeDamage();
         }
-
     }
-
-
-
-
 }

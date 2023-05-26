@@ -2,8 +2,6 @@ let keyPresses = {};
 let playerDiv = document.querySelector("#player")
 let img = document.querySelector(".player-img");
 
-
-
 window.addEventListener("keydown", function (e) {
     keyPresses[e.key] = true;
     if (e.key === "r") {
@@ -12,12 +10,10 @@ window.addEventListener("keydown", function (e) {
 
     if (e.key === "q") {
         game.player.firstAbility();
-        console.log("firstAbilityUsed")
     }
 
     if (e.key === "e") {
         game.player.secondAbility();
-        console.log("secondAbilityUsed")
     }
 })
 
@@ -33,11 +29,8 @@ window.addEventListener("mousedown", function (e) {
 
         game.player.gun.shoot()
 
-
-
         shootInterval = setInterval(function () {
             game.player.gun.shoot()
-            console.log("mouseDown shooting")
         }, game.player.gun.fireRate)
 })
 
@@ -54,7 +47,11 @@ var imgCenter = {
 let mouseX;
 let mouseY;
 var angle = 0;
-document.addEventListener("mousemove", e => {
+document.addEventListener("mousemove", function  (e){
+    rotate(e)
+})
+
+function rotate(e){
     imgCenter = {
         x: img.getBoundingClientRect().left + (img.getBoundingClientRect().width + 45) / 2 + window.scrollX,
         y: img.getBoundingClientRect().top + img.getBoundingClientRect().height / 2 + window.scrollY
@@ -63,10 +60,9 @@ document.addEventListener("mousemove", e => {
 
     playerDiv.style.transform = `rotate(${angle}deg)`;
 
-
     mouseX = e.pageX;
     mouseY = e.pageY;
-})
+}
 
 
 

@@ -1,10 +1,10 @@
 class ShieldBox extends Box {
     constructor() {
-        super("./assets/others/boxes/shieldBox.jpg")
+        super("./assets/others/boxes/shieldBox.png")
 
     }
 
     pickUp() {
-        console.log("abrakadabra")
+
     }
 }

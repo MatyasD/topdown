@@ -21,6 +21,7 @@ class Player {
         this.img = document.getElementsByClassName("player-img")[0];
         this.setGear()
         this.setImg()
+        this.setName()
         this.healthEl = document.createElement("div");
         this.healthBar = document.createElement("div");
         this.createHealthBar()
@@ -31,11 +32,9 @@ class Player {
         this.move();
         this.bullets.forEach(item => item.moveToDirection());
         this.bullets.forEach(item => item.checkCollisions());
-
     }
 
     createHealthBar(){
-        console.log("called" + this.gun.fireRate)
         this.healthBar.setAttribute("class", "playerHealthBar");
 
         document.body.appendChild(this.healthBar)
@@ -91,10 +90,17 @@ class Player {
     takeDamage(damage){
         this.hp -= damage;
         this.setHealthBar()
+        let vignette = document.getElementsByClassName("vignette")[0]
+        vignette.style.backgroundImage = "radial-gradient(ellipse at center, rgba(175,0,0,0) 0%, rgba(175,0,0,0.8) 100%)";
         if (this.hp <= 0){
-            document.querySelector("#game").remove();
+           // document.querySelector("#game").remove();
             this.el.remove();
+            game.gameOver()
         }
+
+        setTimeout(function (){
+            vignette.style.backgroundImage = "radial-gradient(ellipse at center, rgba(0,0,0,0) 0%,  rgba(0,0,0,0.8) 100%)";
+        },150)
     }
 
     setGear(){
@@ -103,7 +109,6 @@ class Player {
 
         if (gear !== null){
             for (let i = 0; i < 6 ; i++) {
-                console.log(gear[i])
                 if (gear[i] !== null){
                     if (i === 2){
                         this.gun.magSize += gear[i].magSize;
@@ -126,11 +131,19 @@ class Player {
     }
 
     setHealthBar(){
-        this.healthEl.style.width = `${this.hp / (this.totalHp / 100)}%`
+        if (this.hp / (this.totalHp / 100) > 100){
+            this.healthEl.style.width = "100%"
+        }else{
+            this.healthEl.style.width = `${this.hp / (this.totalHp / 100)}%`
+        }
     }
 
     setImg(){
         this.img.src = this.path;
     }
 
+    setName(){
+        let nameEl = document.getElementById("name");
+        nameEl.innerHTML = localStorage.getItem("char").charAt(0).toUpperCase() + localStorage.getItem("char").slice(1)
+    }
 }

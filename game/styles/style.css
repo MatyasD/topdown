@@ -1,12 +1,13 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Pathway+Extreme:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     user-select: none;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Pathway Extreme', sans-serif;
+
 }
 
 html {
@@ -32,7 +33,8 @@ body::-webkit-scrollbar {
     height: 150px;
     transform: translate(-50%, -50%);
     user-select: none;
-    z-index: 999;
+    z-index: 8;
+    border: 1px solid red;
 }
 
 #player img {
@@ -42,6 +44,7 @@ body::-webkit-scrollbar {
     z-index: 2;
     width: 150px;
     height: 150px;
+    border: 1px solid black;
 }
 
 #player .bullet-point {
@@ -55,8 +58,11 @@ body::-webkit-scrollbar {
 
 #ammoInfo {
     position: fixed;
-    bottom: 10px;
-    right: 10px;
+    bottom: 20px;
+    right: 20px;
+    color: white;
+    z-index: 10;
+    border-top: 3px solid white;
 }
 
 .bullet {
@@ -67,10 +73,12 @@ body::-webkit-scrollbar {
 
 .box {
     width: 100px;
+    z-index: 0;
 }
 
 .enemy{
-    width: 200px;
+    width: 150px;
+    z-index: 1;
 }
 
 .enemyHealthBar{
@@ -86,21 +94,131 @@ body::-webkit-scrollbar {
 }
 
 .playerHealthBar{
-    width: 100%;
+    width: 50%;
     height: 15px;
     position: fixed;
     background-color: black;
     z-index: 100;
+    bottom: 25px;
+    left: 400px;
 }
 
 .playerHealth{
     width: 100%;
     height: 15px;
-    background-color: red;
+    background-color: #af0000;
 }
 
 #pointsInfo{
     position: fixed;
-    bottom: 10px;
-    left: 10px;
+    bottom: 20px;
+    left: 20px;
+    color: white;
+    z-index: 10;
+    border-top: 3px solid white;
+}
+
+.vignette{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    background-image: radial-gradient(ellipse at center, rgba(0,0,0,0) 0%,  rgba(0,0,0,0.8) 100%);
+    opacity: 100%;
+    z-index: 9;
+}
+
+#name{
+    font-size: 20px;
+    position: fixed;
+    bottom: 50px;
+    left: 760px;
+    color: white;
+    z-index: 10;
+}
+
+.gearMessage{
+    display: flex;
+    position: fixed;
+    right: -2px;
+    top: 30px;
+    width: 250px;
+    height: 75px;
+    border: 2px solid white;
+    z-index: 10;
+    backdrop-filter: blur(50px);
+}
+
+.gearImgIcon{
+    height: 100%;
+    display: inline-block;
+}
+
+.gearName{
+    display: inline-block;
+    color: white;
+    font-size: 20px;
+    font-family: 'Raleway', sans-serif;
+    margin-top: 13px;
+}
+
+.home-btn{
+    width: 40px;
+    height: 40px;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 9999;
+
+    filter: invert(1);
+}
+
+.home-btn img{
+    width: 100%;
+    height: 100%;
+}
+
+.gameOver{
+    display: none;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    backdrop-filter: blur(40px);
+    filter: grayscale(25%);
+    z-index: 9999999999;
+    text-align: center;
+}
+
+.gameOver h1{
+    margin-top: 150px;
+    font-size: 150px;
+    color: white;
+}
+
+.gameOver h2 a{
+    margin-top: 50px;
+    font-size: 50px;
+    color: white;
+    transition: 0.3s;
+    text-decoration: none;
+    border: 3px solid white;
+    padding: 0 10px;
+}
+
+.gameOver h2 a:hover{
+    background-color: white;
+    color: white;
+    transition: 0.3s;
+    text-shadow: -2px -2px 0 #404040, 2px -2px 0 #404040, -2px 2px 0 #404040, 2px 2px 0 #c3c5cb; /* Set the text shadow to create the outline effect */
+}
+
+#ammoState{
+    position: fixed;
+    top: 10px;
+    left: 700px;
+    z-index: 9999;
+    color: white;
 }
