@@ -6,25 +6,32 @@ let gear = [];
 let itemCard = document.getElementsByClassName("item");
 let currDragged;
 let currPos;
+let iconCard = document.getElementsByClassName("icon-img")
+let trash = document.getElementsByClassName("discard")[0]
+
 
 window.onload = () =>{
 
-    if (localStorage.length === 0){
-     //   gear = [...gg.generateGear(3)]
-
+    if (localStorage.gear === undefined){
+        // tohle se ani nezapne ale bezi to
         gear[6] = gg.generateGear(1)[0];
         gear[7] = gg.generateGear(1)[0];
         gear[8] = gg.generateGear(1)[0];
 
+        for (let i = 9; i < 22; i++) {
+            gear[i] = null;
+        }
+
         localStorage.setItem("gear", JSON.stringify(gear))
         localStorage.setItem("isFirstTime", JSON.stringify(true))
         localStorage.setItem("char", "joe")
+        location.reload();
     }else{
         localStorage.setItem("isFirstTime", JSON.stringify(false))
         gear = JSON.parse(localStorage.getItem("gear"))
         for (let i = 0; i < gear.length; i++) {
             if(gear[i] !== null || undefined){
-                if (gear[i].name !== "weapon"){
+                if (gear[i].name !== "magazine"){
                     gear[i] = Object.assign(new Gear(), gear[i]);
                 }else{
                     gear[i] = Object.assign(new Magazine(), gear[i]);
@@ -50,7 +57,9 @@ window.onload = () =>{
 
 
 function setEvents(){
+    setIcons()
 
+    console.log("setEvents")
     for (let i = 0; i < gear.length; i++) {
         if (gear[i] !== null && gear[i] !== undefined && gear[i].length !== 0){
             gear[i].el.addEventListener("dragstart", function (e){
@@ -82,6 +91,16 @@ function setEvents(){
 
         })
     }
+    trash.addEventListener("drop", function (){
+        gear[currPos] = null;
+        localStorage.setItem("gear", JSON.stringify(gear))
+        trash.prepend(currDragged.el);
+        trash.removeChild(trash.children[0])
+    })
+
+    trash.addEventListener("dragover", function (e){
+        e.preventDefault()
+    })
 }
 
 function setDraggedItem(index){
@@ -92,11 +111,20 @@ function setDraggedItem(index){
         currDragged.el.parentElement.classList.remove("empty");
         gear[index] = currDragged;
         gear[currPos] = null;
-
         localStorage.setItem("gear", JSON.stringify(gear))
     }
 
     setEvents()
+}
+
+function setIcons(){
+    for (let i = 0; i < 6; i++) {
+        if (gear[i] !== null){
+            iconCard[i].style.display = "none"
+        }else {
+            iconCard[i].style.display = "block"
+        }
+    }
 }
 
 document.getElementsByClassName("char1")[0].addEventListener("click", function (){

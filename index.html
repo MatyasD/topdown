@@ -6,9 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  
-  <script type="module" crossorigin src="/topdown/dist/assets/index-ddcdb419.js"></script>
-  <link rel="stylesheet" href="/topdown/dist/assets/index-b0d0c313.css">
+  <link rel="stylesheet" href="css/postavy.css">
 </head>
 
 <body>
@@ -16,20 +14,30 @@
 <div class="player-gear">
   <div class="item empty equipped-gear head"></div>
   <div class="item empty  equipped-gear torso"></div>
-  <div class="item empty  equipped-gear weapon"></div>
+  <div class="item empty  equipped-gear magazine"></div>
   <div class="item empty  equipped-gear belt"></div>
   <div class="item empty  equipped-gear gloves"></div>
   <div class="item empty  equipped-gear boots"></div>
+
+</div>
+
+<div class="icons player-gear">
+  <div class="icon"><img class="icon-img" src="gear/assets/icons/head.png" alt="" srcset="">  </div>
+  <div class="icon"><img class="icon-img" src="gear/assets/icons/torso.png" alt="" srcset=""></div>
+  <div class="icon"><img class="icon-img" src="gear/assets/icons/magazine.png" alt="" srcset=""></div>
+  <div class="icon"><img class="icon-img" src=" gear/assets/icons/belt.png" alt="" srcset=""></div>
+  <div class="icon"><img class="icon-img" src="gear/assets/icons/gloves.png" alt="" srcset=""></div>
+  <div class="icon"><img class="icon-img" src="gear/assets/icons/boots.png" alt="" srcset=""></div>
 </div>
 
 <div class="character-selector">
-  <button class="char1">Postava 1</button>
-  <button class="char2">Postava 2</button>
+  <button class="char1">JOE</button>
+  <button class="char2">JOHN </button>
 </div>
 
 <div class="inventory">
   <div class="inv-info">
-    <h1>Inventář</h1>
+    <h1>INVENTORY</h1>
   </div>
 
   <div class="inv-items">
@@ -55,19 +63,24 @@
 
 <div class="div-hrat">
 <a href="game/index.html">
-  <button>HRÁT</button>
+  <button>PLAY</button>
 </a>
+</div>
+
+<div class="discard">
+  <img draggable="false" src="gear/assets/trash.png" alt="" srcset="">
 </div>
 
   <canvas class="webgl"></canvas>
 
 
+
   <script src="gear/Gear.js"></script>
   <script src="gear/Magazine.js"></script>
-  <script src="gear/GearGenerator.js"></script>
   <script src="drag.js"></script>
-  <script src="postavy.js"></script>
-  
+    <script src="gear/GearGenerator.js"></script>
+  <script src="postavy.js" type="module"></script>
+  <script type="module" src="./main.js"></script>
 
 </body>
 
