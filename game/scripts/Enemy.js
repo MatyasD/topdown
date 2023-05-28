@@ -26,7 +26,6 @@ class Enemy {
         this.img.setAttribute("class", "enemy");
         this.img.setAttribute("draggable", "false")
         this.img.style.width = `${this.size}px`;
-        this.img.style.border = `1px solid red`;
         this.el.style.position = 'absolute';
         this.el.style.zIndex = "8"
 
@@ -75,5 +74,16 @@ class Enemy {
             },1000)
 
         }
+    }
+    spawnBlood(){
+        let img = document.createElement('img');
+        img.src = "./assets/others/blood.png";
+
+        img.style.position = "absolute";
+        img.style.width = "150px"
+        img.style.left = `${this.x}px`;
+        img.style.top =  `${this.y}px`;
+
+        document.body.appendChild(img);
     }
 }

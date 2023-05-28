@@ -6,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=
     , initial-scale=1.0">
-    <title>Document</title>
+    <title>Hra</title>
     <link rel="stylesheet" href="styles/style.css">
-
+    <link rel="icon" href="assets/others/gun.png" type="image/x-icon">
 
     <script src="../gear/Gear.js"></script>
     <script src="../gear/Magazine.js"></script>
@@ -18,9 +18,8 @@
     <script src="scripts/Box.js"></script>
     <script src="scripts/boxes/HealthBox.js"></script>
     <script src="scripts/boxes/AmmoBox.js"></script>
-    <script src="scripts/boxes/ShieldBox.js"></script>
+    <script src="scripts/boxes/AbilityBox.js"></script>
     <script src="scripts/boxes/SpeedBox.js"></script>
-    <script src="scripts/Level.js"></script>
 
 </head>
 
@@ -43,7 +42,7 @@
     </div>
 
         <div >
-            <h1 id="ammoState">reload</h1>
+            <h1 id="ammoState"></h1>
         </div>
 
         <div>
@@ -56,14 +55,27 @@
             </a>
         </div>
 
+        <div id="roundAndEnemies">
+            <h1 id="round"></h1>
+            <h1 id="enemies"></h1>
+        </div>
+
+        <div id="abilities">
+            <h1 id="q">Q</h1>
+            <h2 id="qNum">1</h2>
+            <h1 id="e">E</h1>
+            <h2 id="eNum">2</h2>
+        </div>
+
      <div class="gameOver">
          <h1>
              GAME OVER
          </h1>
          <h2>
              <a href="../index.html">BACK TO MENU</a>
-
          </h2>
+         <button id="playAgain">PLAY AGAIN</button>
+         <h3 id="highScore"></h3>
      </div>
     <div class="map">
 
@@ -82,7 +94,6 @@
     <script src="scripts/Joe.js"></script>
     <script src="scripts/John.js"></script>
     <script src="scripts/Enemy.js"></script>
-    <script src="scripts/levels.js"></script>
     <script src="scripts/RoundGenerator.js"></script>
     <script src="scripts/Game.js"></script>
     <script src="scripts/app.js"></script>

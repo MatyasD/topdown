@@ -40,12 +40,12 @@ class Bullet {
 
     }
 
-    checkCollisions() {
+    async checkCollisions() {
 
         for (let i = 0; i < game.rg.enemies.length ; i++) {
-            if (Engine.checkCollision(this.el, game.rg.enemies[i].img)){
+            if (await Engine.checkCollision(this.el, game.rg.enemies[i].img)){
                 this.el.remove()
-                this.dealDamage(game.rg.enemies[i])
+                await this.dealDamage(game.rg.enemies[i])
             }
         }
     }
@@ -55,9 +55,11 @@ class Bullet {
 
         if (target.hp <= 0){
             game.points += target.points;
+            target.spawnBlood();
             target.el.remove();
             game.isGenerated = false;
             game.isGearGenerated = false;
+            document.getElementById("enemies").innerHTML = `Enemies left: ${game.rg.enemies.length - 1}`
         }else{
             target.takeDamage();
         }

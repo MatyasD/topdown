@@ -1,4 +1,17 @@
+window.onload= () =>{
+    checkSize();
+}
 
+window.onresize = () =>{
+    checkSize()
+}
+
+function checkSize(){
+    if (window.innerHeight > window.innerWidth){
+        document.body.style.display = "none";
+        document.write("Use horizontally oriented device")
+    }
+}
 
 const gg = new GearGenerator();
 
@@ -13,7 +26,8 @@ let trash = document.getElementsByClassName("discard")[0]
 window.onload = () =>{
 
     if (localStorage.gear === undefined){
-        // tohle se ani nezapne ale bezi to
+        localStorage.clear()
+
         gear[6] = gg.generateGear(1)[0];
         gear[7] = gg.generateGear(1)[0];
         gear[8] = gg.generateGear(1)[0];
@@ -25,6 +39,7 @@ window.onload = () =>{
         localStorage.setItem("gear", JSON.stringify(gear))
         localStorage.setItem("isFirstTime", JSON.stringify(true))
         localStorage.setItem("char", "joe")
+        localStorage.setItem("highScore", "0")
         location.reload();
     }else{
         localStorage.setItem("isFirstTime", JSON.stringify(false))
@@ -45,10 +60,10 @@ window.onload = () =>{
         if(gear[i] !== null && gear[i] !== undefined && gear[i].length !== 0){
             gear[i].create(i)
 
-                if (gear[gear[i].index] === null  ){
-                    gear[gear[i].index] = gear[i]
-                    gear[i] = null
-                }
+            if (gear[gear[i].index] === null  ){
+                gear[gear[i].index] = gear[i]
+                gear[i] = null
+            }
         }
     }
     localStorage.setItem("gear", JSON.stringify(gear))
@@ -105,7 +120,8 @@ function setEvents(){
 
 function setDraggedItem(index){
 
-    if ((currDragged !== null && currDragged !== undefined) && !itemCard[index].hasChildNodes() ){
+    if ((currDragged !== null && currDragged !== undefined) && !itemCard[index].hasChildNodes()){
+        console.log("podminka 2")
         currDragged.el.parentElement.classList.add("empty");
         itemCard[index].prepend(currDragged.el);
         currDragged.el.parentElement.classList.remove("empty");
@@ -132,12 +148,26 @@ document.getElementsByClassName("char1")[0].addEventListener("click", function (
         localStorage.setItem("char", "joe")
         location.reload();
     }
-
 })
 
 document.getElementsByClassName("char2")[0].addEventListener("click", function (){
     if (localStorage.getItem("char") !== "john"){
         localStorage.setItem("char", "john")
         location.reload();
+    }
+})
+
+let isClicked = false;
+let inventory = document.getElementsByClassName("inventory")[0]
+let controls = document.getElementsByClassName("controls")[0]
+document.getElementById("controlsSwitch").addEventListener("click", function (){
+    if (!isClicked){
+        inventory.style.display = "none"
+        controls.style.display = "block"
+        isClicked = true;
+    }else{
+        inventory.style.display = "block"
+        controls.style.display = "none"
+        isClicked = false;
     }
 })

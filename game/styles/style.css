@@ -7,11 +7,14 @@
     padding: 0;
     user-select: none;
     font-family: 'Pathway Extreme', sans-serif;
+    cursor: crosshair;
+
 
 }
 
 html {
     width: 3508px;
+
 }
 
 body {
@@ -19,6 +22,7 @@ body {
     overflow: hidden;
     height: 2480px;
     width: 3508px;
+
 }
 
 body::-webkit-scrollbar {
@@ -34,7 +38,6 @@ body::-webkit-scrollbar {
     transform: translate(-50%, -50%);
     user-select: none;
     z-index: 8;
-    border: 1px solid red;
 }
 
 #player img {
@@ -44,7 +47,6 @@ body::-webkit-scrollbar {
     z-index: 2;
     width: 150px;
     height: 150px;
-    border: 1px solid black;
 }
 
 #player .bullet-point {
@@ -100,7 +102,7 @@ body::-webkit-scrollbar {
     background-color: black;
     z-index: 100;
     bottom: 25px;
-    left: 400px;
+    left: 500px;
 }
 
 .playerHealth{
@@ -133,7 +135,7 @@ body::-webkit-scrollbar {
     font-size: 20px;
     position: fixed;
     bottom: 50px;
-    left: 760px;
+    left: 860px;
     color: white;
     z-index: 10;
 }
@@ -212,13 +214,108 @@ body::-webkit-scrollbar {
     background-color: white;
     color: white;
     transition: 0.3s;
-    text-shadow: -2px -2px 0 #404040, 2px -2px 0 #404040, -2px 2px 0 #404040, 2px 2px 0 #c3c5cb; /* Set the text shadow to create the outline effect */
+    text-shadow: -2px -2px 0 #404040, 2px -2px 0 #404040, -2px 2px 0 #404040, 2px 2px 0 #c3c5cb;
+}
+
+.gameOver h3{
+    color: white;
+    margin-top: 30px;
+}
+
+.gameOver button{
+    background-color: transparent;
+    border: none;
+    color: white;
+    padding: 20px 30px;
+    font-size: 35px;
+    margin-top: 20px ;
+    transition: 0.3s;
+    font-weight: bold;
+}
+
+.gameOver button:hover{
+    background-color: white;
+    transition: 0.3s;
+    text-shadow: -2px -2px 0 #404040, 2px -2px 0 #404040, -2px 2px 0 #404040, 2px 2px 0 #c3c5cb;
+    cursor:pointer;
 }
 
 #ammoState{
     position: fixed;
-    top: 10px;
-    left: 700px;
+    top: 110px;
+    left: 905px;
     z-index: 9999;
     color: white;
+    font-size: 18px;
+}
+
+#roundAndEnemies{
+    display: flex;
+    position: fixed;
+    top: 20px;
+    left: 800px;
+    z-index: 9999;
+    color: white;
+}
+
+#round{
+    margin-right: 100px ;
+    position: fixed;
+    left: 880px;
+    font-size: 35px;
+}
+
+#enemies{
+    position: fixed;
+    top: 65px;
+    left: 878px;
+    font-size: 20px;
+}
+
+#abilities{
+    z-index: 99;
+    position: fixed;
+    bottom: 50px;
+    left: 490px;
+    display: flex;
+}
+
+#abilities h1{
+    border: 1px solid white;
+    backdrop-filter: blur(50px);
+    color: white;
+    padding: 10px 20px;
+    margin-left: 10px ;
+}
+
+#abilities h2{
+    margin-top: 35px;
+    bottom: 40px;
+    color: white;
+    margin-left: 10px ;
+}
+
+@media only screen and (max-width: 1600px){
+    #abilities{
+        left: 390px;
+    }
+    #round{
+        left: 710px;
+    }
+
+    #ammoState{
+        left: 740px;
+    }
+
+    .playerHealthBar{
+        left: 400px;
+    }
+
+    #name{
+        left: 760px;
+    }
+
+    #enemies{
+        left: 710px;
+    }
 }

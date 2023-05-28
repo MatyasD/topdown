@@ -59,24 +59,27 @@ class GearGenerator{
         for (let i = 0; i < numOfGear; i++) {
             gear.generatedRarities.push(this.getRarity());
             gear.generatedGearNames.push(this.getGearName());
+            let randomBoost = (Math.random() * 1.2) + 0.5
             if (gear.generatedGearNames[i] !== "magazine"){
-                gear.hp[i] = (gear.generatedRarities[i] + 1) * 10;
+                gear.hp[i] = Math.round((gear.generatedRarities[i] + 1) * 10 * randomBoost) ;
                 if (gear.generatedGearNames[i] === "boots"){
-                    gear.speed[i] = (gear.generatedRarities[i] + 1) * 2;
+                    gear.speed[i] = Math.round((gear.generatedRarities[i] + 1) * 2 * randomBoost)
                 }else{
                     gear.speed[i] = 0;
                 }
             }else{
                 // kod pro zbran; dalsi objekt do gear;
-                gear.gun.magSize[i] = (gear.generatedRarities[i] + 2) * 10;
+                gear.gun.magSize[i] = Math.round((gear.generatedRarities[i] + 2) * 10 * randomBoost) ;
                 // cim vice tim lepe
-                gear.gun.bullSpread[i] = (gear.generatedRarities[i] + 1) * 2;
+                gear.gun.bullSpread[i] = Math.round((gear.generatedRarities[i] + 1) * 2 * randomBoost) ;
                 // dodelat fire rate
-                gear.gun.fireRate[i] = (gear.generatedRarities[i] + 1) * 1;
+                gear.gun.fireRate[i] = Math.round((gear.generatedRarities[i] + 1) * 1 * randomBoost);
 
-                gear.gun.totalAmmo[i] = (gear.generatedRarities[i] + 1) * 20;
-                gear.gun.damage[i] = (gear.generatedRarities[i] + 1) * 3;
-                gear.gun.reloadTime[i] = (4 - (gear.generatedRarities[i] + 1))
+                gear.gun.totalAmmo[i] = Math.round((gear.generatedRarities[i] + 1) * 20 * randomBoost);
+                gear.gun.damage[i] =Math.round((gear.generatedRarities[i] + 1) * 3 * randomBoost)
+                let reloadTime = Math.round((4 - (gear.generatedRarities[i] + 1) * randomBoost))
+
+                reloadTime < 0 ? gear.gun.reloadTime[i] = 0 : gear.gun.reloadTime[i] = reloadTime;
             }
         }
         return gear;

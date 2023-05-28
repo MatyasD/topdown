@@ -15,18 +15,28 @@ class RoundGenerator{
 
         if (this.enemies.length === 0 && this.isNewRound){
             this.round++;
-            this.startRound()
+
+                this.startRound()
+
         }
     }
 
     startRound(){
         this.isNewRound = false;
-        this.enemies = []
-        this.generateEnemies()
-        if (!this.isPlaying){
-            this.play()
-            this.isPlaying = false;
-        }
+        setTimeout(()=>{
+            this.enemies = []
+            this.generateEnemies()
+            let roundEl = document.getElementById("round");
+            let enemiesEl = document.getElementById("enemies");
+
+            roundEl.innerHTML = `Round: ${this.round}`;
+            enemiesEl.innerHTML = `Enemies left: ${this.enemies.length}`;
+            if (!this.isPlaying){
+                this.play()
+                this.isPlaying = false;
+            }
+        },1000)
+
     }
 
     generateEnemies(){
@@ -41,7 +51,6 @@ class RoundGenerator{
             if(enemyRarity > 55){
                 this.enemies.push(new Enemy("assets/others/zombie2.png",Engine.randomPosition().x,Engine.randomPosition().y, enemyRarity * 10, enemyRarity / 2, enemyRarity / 20, Math.round(enemyRarity / 10) * 10, 170 ))
             }
-            console.log(enemyRarity)
         }
         this.isNewRound = true;
     }

@@ -20,7 +20,6 @@ class Box {
 
     // Kontrola, jestli hráč sebral box
     checkCollision() {
-
         if (Engine.checkCollision(this.el, game.player.el)) {
             this.pickUp()
             this.el.remove();

@@ -48,7 +48,7 @@ let mouseX;
 let mouseY;
 var angle = 0;
 document.addEventListener("mousemove", function  (e){
-    rotate(e)
+        rotate(e)
 })
 
 function rotate(e){
@@ -56,12 +56,13 @@ function rotate(e){
         x: img.getBoundingClientRect().left + (img.getBoundingClientRect().width + 45) / 2 + window.scrollX,
         y: img.getBoundingClientRect().top + img.getBoundingClientRect().height / 2 + window.scrollY
     };
+
     angle = Math.atan2(mouseX - imgCenter.x, - (mouseY - imgCenter.y)) * (180 / Math.PI);
 
     playerDiv.style.transform = `rotate(${angle}deg)`;
-
     mouseX = e.pageX;
     mouseY = e.pageY;
+
 }
 
 

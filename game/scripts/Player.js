@@ -15,16 +15,15 @@ class Player {
         }
         this.totalHp = hp;
         this.isFirstAbilityUsed = false;
+        this.firstAbilityUsage = 3;
         this.isSecondAbilityUsed = false;
+        this.secondAbilityUsage = 3;
         this.isSpeedDefault = true;
         this.el = document.querySelector("#player");
         this.img = document.getElementsByClassName("player-img")[0];
-        this.setGear()
-        this.setImg()
-        this.setName()
         this.healthEl = document.createElement("div");
         this.healthBar = document.createElement("div");
-        this.createHealthBar()
+        this.start()
     }
 
     // Metoda volající všechny metody, které se opakují každý frame
@@ -33,12 +32,17 @@ class Player {
         this.bullets.forEach(item => item.moveToDirection());
         this.bullets.forEach(item => item.checkCollisions());
     }
+    start(){
+        this.createHealthBar()
+        this.setAbilitiesUsage();
+        this.setGear()
+        this.setImg()
+        this.setName()
+    }
 
     createHealthBar(){
         this.healthBar.setAttribute("class", "playerHealthBar");
-
         document.body.appendChild(this.healthBar)
-
         this.healthEl.setAttribute("class", "playerHealth");
         this.healthBar.appendChild(this.healthEl);
     }
@@ -146,4 +150,32 @@ class Player {
         let nameEl = document.getElementById("name");
         nameEl.innerHTML = localStorage.getItem("char").charAt(0).toUpperCase() + localStorage.getItem("char").slice(1)
     }
+
+    setAbilitiesUsage(){
+        document.getElementById("qNum").innerHTML =`${this.firstAbilityUsage}`
+        document.getElementById("eNum").innerHTML =`${this.secondAbilityUsage}`
+    }
+
+    firstAbility(){
+        let firstAbilityBtn = document.getElementById("q");
+        let firstAbilityBtnNum = document.getElementById("qNum");
+        firstAbilityBtn.style.backgroundColor = "red";
+        firstAbilityBtnNum.innerHTML = `${this.firstAbilityUsage - 1}`
+
+        setTimeout( () =>{
+            firstAbilityBtn.style.backgroundColor = "transparent";
+        }, 2000)
+    }
+
+    secondAbility(){
+        let secondAbilityBtn = document.getElementById("e");
+        let secondAbilityBtnNum = document.getElementById("eNum");
+        secondAbilityBtnNum.innerHTML = `${this.secondAbilityUsage - 1}`
+        secondAbilityBtn.style.backgroundColor = "red";
+
+        setTimeout( () =>{
+            secondAbilityBtn.style.backgroundColor = "transparent";
+        }, 5000)
+    }
+
 }

@@ -9,8 +9,8 @@ class Engine {
         let x =  Math.floor(Math.random() * document.body.clientWidth);
         let y = Math.floor(Math.random() * document.body.clientHeight);
 
-        (x > (document.body.clientWidth / 2)) ? x -= 200 : x += 200;
-        (y > (document.body.clientHeight / 2)) ? y -= 200 : y += 200;
+        (x > (document.body.clientWidth / 2)) ? x -= 600 : x += 600;
+        (y > (document.body.clientHeight / 2)) ? y -= 600 : y += 600;
 
         return {x,y};
     }

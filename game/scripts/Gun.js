@@ -22,7 +22,7 @@ class Gun {
                 y: bulletPoint.getBoundingClientRect().top + window.scrollY
             }
 
-             let spread = (Math.random() - 0.5) * Math.PI / this.bullSpread;
+            let spread = (Math.random() - 0.5) * Math.PI / this.bullSpread;
             let bullDirection = Math.atan2(mouseY - bulletPointPos.y, mouseX - bulletPointPos.x) + spread;
 
             let bullet = new Bullet(bulletPointPos.x, bulletPointPos.y, bullDirection, this.bullSpeed);
@@ -38,7 +38,6 @@ class Gun {
         if (this.leftInMag === 0 && this.totalAmmo !== 0) {
             this.reload();
         }else if (this.totalAmmo === 0 && this.leftInMag === 0){
-                console.log("potrebny if")
             document.getElementById("ammoState").innerHTML = "NO AMMO"
             document.getElementById("ammoState").style.color = "red"
         }

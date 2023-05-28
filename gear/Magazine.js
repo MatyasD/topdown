@@ -8,6 +8,5 @@ class Magazine extends Gear{
         this.damage = damage;
         this.reloadTime = reloadTime;
         this.name = "magazine"
-
     }
 }
